@@ -137,7 +137,6 @@ class Registration_Status(models.Model):
         return self.name
 
 
-
 class Employers(models.Model):
     employer_code=models.AutoField(primary_key=True,unique=True)
     name = models.CharField(max_length=150)
@@ -145,7 +144,6 @@ class Employers(models.Model):
     CAC_no = models.IntegerField(blank=True,null=True,unique=False)
     certificate_no = models.IntegerField(blank=True, null=True, unique=False)
     CAC_reg_date = models.DateField(blank=True,null=True)
-  
     submitted_by = models.ForeignKey(User,models.SET_NULL,blank=True,null=True,unique=False)
     submitted_on = models.DateTimeField(auto_now_add=True,blank=True, null=True,unique=False)
     address1=models.CharField(max_length=150,blank=True,null=True)

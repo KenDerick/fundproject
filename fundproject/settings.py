@@ -41,11 +41,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'nsitf',
     'smart_selects',
+    'bootstrap_datepicker_plus',
     
 ]
 
 AUTH_USER_MODEL = 'nsitf.User'
 USE_DJANGO_JQUERY = True
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

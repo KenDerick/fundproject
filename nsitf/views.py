@@ -24,54 +24,22 @@ def login_user(request):
     else:
         return render(request, 'nsitf/login.html', {})
 
+
 def logout_user(request):
     logout(request)
     return redirect('home')
 
 
-# def reg_employer(request):
-#     form = EmployerRegForm(request.POST)
-#     return render(request,  'nsitf/registrationpage.html', {'form':form})
- 
-# Create your views here.
-class EmployerFormView(FormView):
-    template_name = 'nsitf/registrationpage.html'
-    model = Employers
-    form_class = EmployerRegForm
-    #success_url = redi
-    
-    def form_valid(self, form):
-        name = form.cleaned_data['name']
-        ECS_no = form.cleaned_data['ECS_no']
-        CAC_no = form.cleaned_data['CAC_no']
-        certificate_no = form.cleaned_data['certificate_no']
-        region = form.cleaned_data['region']
-        state = form.cleaned_data['state']
-        branch = form.cleaned_data['branch']
-        date_registered = form.cleaned_data['date_registered']
-        employer = Employers(name=name,ECS_no=ECS_no,CAC_no=CAC_no,region=region,state=state,branch=branch,date_registered=date_registered, certificate_no=certificate_no)
-        employer.save()
-        return super(EmployerFormView, self).form_valid(form)
-
-
-
 def submit_new_employer(request):
-    user_id=request.user.staff_id#Get Cuurent User Staff Id
-    staff_id= User.objects.all().get(staff_id=user_id)#Convert This to A User Object
-    
-    state_id = request.GET.get('state')
-   
-    local_governments = Local_Government.objects.filter(state_id=state_id).order_by('name')
-        
+    user_id=request.user.staff_id   #Get Cuurent User Staff Id
+    staff_id= User.objects.all().get(staff_id=user_id)  #Convert This to A User Object
     fname=request.user.first_name
     lname=request.user.last_name
-    fullname = fname + ' ' + lname#Concantenate first and last name
-
-        
-   
+    fullname = fname + ' ' + lname  #Concantenate first and last name
+    # state_id = request.GET.get('state')
+    # local_governments = Local_Government.objects.filter(state_id=state_id).order_by('name')  
     form = EmployerRegistrationForm()
    
-    
     if request.method == 'POST':
         form = EmployerRegistrationForm(request.POST or None)
        
@@ -93,24 +61,19 @@ def submit_new_employer(request):
             
             newemployer.save()
             form = EmployerRegistrationForm(request.POST or None)
-            
-            # form.save()
-            messages.success(
-            request, 'Your Leave Application has been saved!')
+    
+            messages.success(request, 'Your Leave Application has been saved!')
             return redirect('registrationsuccess')
                         
         else:
             messages.error(request, 'Your Application Was Not Saved!')
-            
             form = EmployerRegistrationForm(request.POST or None)
 
     return render(request, 'nsitf/registrationpage.html', {'form':form})
 
+
 def registration_success (request):
     user = request.user.staff_id
     submitted_by=User.objects.get(staff_id=user)
-    
     thisemployer=Employers.objects.filter(submitted_by__exact=submitted_by)
     return render(request, 'nsitf/reg_confirm.html', {'thisemployer': thisemployer})
-
-

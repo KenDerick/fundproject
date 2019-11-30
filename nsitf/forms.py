@@ -1,6 +1,6 @@
 from django import forms
-
 from nsitf.models import (Employers,Employees,State,Branches,Regions,Local_Government)
+from bootstrap_datepicker_plus import DatePickerInput
 
 class EmployerRegForm(forms.ModelForm):
     name = forms.CharField(label='Enter Employer Name')
@@ -10,7 +10,7 @@ class EmployerRegForm(forms.ModelForm):
 
 
 class EmployerRegistrationForm(forms.ModelForm):
-    date_registered = forms.DateField()
+    CAC_reg_date = forms.DateField(widget=DatePickerInput(format='%d/%m/%Y'))
     #     widget=DatePickerInput(format='%d/%m/%Y')
     # )
 
@@ -27,7 +27,7 @@ class EmployerRegistrationForm(forms.ModelForm):
     # leave_docs =forms.FileField(label="Please Attach Documents For Leave",required=False)
     class Meta:
         model = Employers
-        fields = ['date_registered','CAC_no','address1','house_no','street','name','state',\
+        fields = ['CAC_reg_date','CAC_no','address1','house_no','street','name','state',\
         'local_council','region','branch',]
 
 

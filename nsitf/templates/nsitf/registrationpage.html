@@ -1,17 +1,21 @@
 {% extends 'base.html' %}
 
+
+{% block extrahead %}
+{{ form.media }}
+{% endblock %}
+
 {% block content %}
+    <h1>Register here!</h1>
 
-<h1>Register here!</h1>
+    <div class="container">
+        <form method="post" id="personForm"  novalidate>
+            {% csrf_token %}
+            {{ form.media.js }}
+            {{form.as_p}}
+            <input type="submit" class="btn btn-primary" value="Submit">
+        </form>
+    </div> 
 
-<div class="container">
-    <form method="post" id="personForm"  novalidate>
-        {% csrf_token %}
-        {{ form.media.js }}
-        {{form.as_p}}
-        <input type="submit" class="btn btn-primary" value="Submit">
-    </form>
-</div> 
-
-
+    
 {% endblock %}
