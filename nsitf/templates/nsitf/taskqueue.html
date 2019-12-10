@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <ol class="breadcrumb my-4">
+            <li class="breadcrumb-item active">Tasks </li>
+        </ol>
+        <table class="table">
+            <thead class="thead-inverse">
+                <tr>
+                    <th>CAC Registration Number</th>
+                    <th>Date</th>
+                    <th>Company Name</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in my_tasks %}
+                    <tr>
+                        <td>{{ task.CAC_no }}</td>
+                        <td>{{ task.CAC_reg_date }}</td>     
+                        <td>{{ task.name }}</td>
+                        <td>{{ task.status }}</td>
+                        <td><a href="#" class="btn btn-warning">View</a></td> 
+                        <td><a href="#" class="btn btn-primary">Discard</a></td>
+                        <td><a href="#" class="btn btn-success">Approve</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+                
+    </div>
+{% endblock %}

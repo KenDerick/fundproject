@@ -1,21 +1,49 @@
 {% extends 'base.html' %}
-
+{% load crispy_forms_tags %}
 
 {% block extrahead %}
-{{ form.media }}
+    {{ form.media }}    
 {% endblock %}
 
 {% block content %}
-    <h1>Register here!</h1>
+    <h1 class='text-center'>Register here!</h1>
+    <hr class="mt-0 mb-4 style18 ">
 
-    <div class="container">
-        <form method="post" id="personForm"  novalidate>
+    <div class="container form-group">
+        <form method="post" id="personForm" class="form-group"  novalidate>
             {% csrf_token %}
             {{ form.media.js }}
-            {{form.as_p}}
+            {{form|crispy}}
             <input type="submit" class="btn btn-primary" value="Submit">
         </form>
-    </div> 
+    </div>
+
+
+    <script>
+        $("#id_CAC_no").blur(function () {
+            var cac_no = $("#id_CAC_no").val();
+            var data = { cac_no };
+    
+            $.ajax({
+                type: 'GET',
+                url: "{% url 'ajax_load_cac' %}",
+                data: data,
+    
+                success: function (response) {
+                    $("#id_employer_name").val(response.company_info.Company_Name);
+                    $("#id_address").val(response.company_info.Company_Address);
+                    $("#id_CAC_reg_date").val(response.company_info.Company_RegDate);
+                },
+    
+                error: function (response) {
+                    console.log(response)
+                    $("#id_employer_name").val('');
+                    $("#id_address").val('');
+                }
+            })
+        })
+    </script>
+    
 
     
 {% endblock %}

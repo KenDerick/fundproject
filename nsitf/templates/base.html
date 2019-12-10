@@ -12,6 +12,7 @@
 
   {# Custom CSS #}
   <link rel="stylesheet" href="{% static 'css/nsitfstyle.css' %}">
+  <link rel="stylesheet" href="{% static 'css/reg_form_style.css' %}">
 
   {# jquery #}
   <script src="{% static 'jquery-3.3.1.min.js' %}" crossorigin="anonymous" ></script>
@@ -21,51 +22,89 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"></script>
 
+
+
+  <link rel="stylesheet" href="/static/css/jquery-ui.css">
+  <script src="/static/js/jquery.min.js"></script>
+  <script src="/static/js/jquery-ui.js"></script>
+  <script src="/static/js/moment.js"></script>
+  <script src="/static/js/momentjs-business.js"></script>
+  <script src="/static/js/1.12.1/jquery-ui.js"></script>
+
+  <link rel="icon" type="image/ico" href="/static/nsitf_logo/nsitf.png" />
+
+
+
   {% block extrahead %}
   {% endblock %}
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  <nav class="navbar navbar-expand-md navbar-dark">
+    <div class="d-flex flex-grow-1">
+      <span class="w-100 d-lg-none d-block">
+        <!-- hidden spacer to center brand on mobile -->
+      </span>
+      <a class="navbar-brand" href="#">
+        <img id="logo" alt="Logo" src="/static/nsitf_logo/nsitf.jpg" width="40" height="40">
+        <span><b>NSITF</b></span>
+      </a>
+
+      <div class="w-100 text-right">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </div>
             
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'home' %}">Home<span class="sr-only">(current)</span></a>
+        </li>
 
-          <li class="nav-item active">
-            <a class="nav-link" href="{% url 'home' %}">Home<span class="sr-only">(current)</span></a>
-          </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'submitnewemployer' %}">Employer</a>
+        </li>
 
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">Login</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'signup' %}">Sign Up </a>
+        </li>
+        {% if user.is_authenticated %}
+      
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'submitnewemployer' %}">Employer</a>
+            <a class="nav-link" href="{% url 'addnewuser' %}">Add User</a>
           </li>
-          {% if user.is_authenticated %}
           
-          {% else%}
+          
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'login' %}">Login</a>
+            <a class="nav-link" href="{% url 'taskqueueview' %}">My Task Queue</a>
           </li>
-          {% endif %}
+        {% endif %}
 
-          <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-          </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
       </ul>
-
     </div>
   </nav>
   {% block content %} 
   {% endblock %}
+
+  <script src="/static/js/popper.min.js"></script>
+  <!-- <script src="/static/js/jquery.min.js"></script> -->
+  <script src="/static/js/bootstrap.min.js"></script>
 </body>
 </html>

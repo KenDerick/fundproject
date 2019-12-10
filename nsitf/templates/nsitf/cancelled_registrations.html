@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="container">
+    <ol class="breadcrumb my-4">
+        <li class="breadcrumb-item active">Employers Entered By {{user.display_name}}</li>
+    </ol>
+    <table class="table">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Created On</th>
+                <th>CAC Registration Number</th>
+                <th>Branch</th>
+                <th>Company Name</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+
+
+            {% for employer_details in cancelled_registrations %}
+           
+            <tr>
+                <td>
+
+
+                    <a>{{ employer_details.submitted_on }}</a>
+                    <small class="text-muted d-block">{{ employer_details.CAC_no }}</small>
+                </td>
+
+                <td>{{ employer_details.CAC_no }}</td>
+                <td id="leavedate">{{ employer_details.branch }}</td>
+                          
+                <td id="leavedate">{{ employer_details.employer_name }}</td>
+                <td>{{ employer_details.status }}</td>
+            </div>
+
+
+
+
+
+
+            {% endfor %}
+
+        </tbody>
+    </table>
+    
+</div>
+
+{% endblock %}

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'nsitf',
     'smart_selects',
     'bootstrap_datepicker_plus',
+    'crispy_forms',
     
 ]
 
@@ -128,3 +129,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [STATIC_DIR,]
+LOGIN_REDIRECT_URL = 'home'
+LOOUT_REDIRECT_URL = 'home'

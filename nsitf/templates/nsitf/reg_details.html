@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <ol class="breadcrumb my-4">
+            <li class="breadcrumb-item active">Employer details </li>
+        </ol>
+        <table class="table">
+            <thead class="thead-inverse">
+                <tr>
+                    <th>CAC Registration Number</th>
+                    <th>Branch</th>
+                    <th>Company Name</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for employer_details in current_detail %}
+            
+                    <tr>
+                        <td>{{ employer_details.CAC_no }}</td>
+                        <td>{{ employer_details.branch }}</td>     
+                        <td>{{ employer_details.employer_name }}</td>
+                        <td>{{ employer_details.status }}</td>
+                        <td><a href="{% url 'cancelregistration' employer_details.pk %}" class="btn btn-warning">Cancel</a></td> 
+                        <td><a href="{% url 'cancelregistration' employer_details.pk %}" class="btn btn-primary">Edit</a></td>
+                        <td><a href="{% url 'sendtotaskqueue' employer_details.pk %}" class="btn btn-success">Submit</a></td>
+                     {% endfor %}
+
+                
+    </div>
+
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
