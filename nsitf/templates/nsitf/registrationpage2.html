@@ -5,22 +5,22 @@
     {{ form.media }}    
 {% endblock %}
 
-{% block tittle %} NSITF | Registration {% endblock %}
-{% block regactive %} active {% endblock %}
+{% block regactive %} active {% endblock %}"
 {% block content %}
     <h1 class='text-center'>Register here!</h1>
     <hr class="mt-0 mb-4 style18 ">
 
     <div class="container form-group">
-        <form method="post" id="personForm" class="form-group" enctype="multipart/form-data">
+        <form method="post" id="personForm" class="form-group"  novalidate>
             {% csrf_token %}
             {{ form.media.js }}
             {{form|crispy}}
             <input type="submit" class="btn btn-primary" value="Submit">
+            
         </form>
     </div>
-
-
+    
+    
     <script>
         $("#id_CAC_no").blur(function () {
             var cac_no = $("#id_CAC_no").val();
@@ -45,6 +45,4 @@
             })
         })
     </script>
-    
-
 {% endblock %}

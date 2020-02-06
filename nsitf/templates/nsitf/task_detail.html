@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+    <ul>
+        <li>{{this_employer.employer_name}}</li>
+        <li>{{this_employer.CAC_no}}</li>
+        <li>{{this_employer.CAC_reg_date}}</li>
+        <li>{{this_employer.address}}</li>
+        <li>{{this_employer.state}}</li>
+        <li>{{this_employer.local_council}}</li>
+        
+        
+    </ul>
+    <button><a href="#" class="btn btn-success">Approve</a></button>
+    <button><a href="{% url 'taskqueueview'%}" class="btn btn-success">Close</a></button>
+    <button><a href="{% url 'returnregistration' this_employer.pk %}" class="btn btn-success">Return</a></button>
+{% endblock %}

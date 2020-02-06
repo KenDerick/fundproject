@@ -1,0 +1,14 @@
+body{
+    
+}
+.container{
+    background-color: lemonchiffon;
+    text-align: center;
+}
+h1{
+    color: green;
+    font-family: Georgia;
+}
+#logo{
+    width: 200px;
+}

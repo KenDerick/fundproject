@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>{% block tittle %} Base Template {% endblock %}</title>
+  <title>{% block tittle %} NSITF | Base {% endblock %}</title>
 
   {# bootstrap #}
   <link rel="stylesheet"  href="{% static 'bootstrap-4.3.1-dist/css/bootstrap.min.css' %}" crossorigin="anonymous">
@@ -23,7 +23,6 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"></script>
 
 
-
   <link rel="stylesheet" href="/static/css/jquery-ui.css">
   <script src="/static/js/jquery.min.js"></script>
   <script src="/static/js/jquery-ui.js"></script>
@@ -33,75 +32,135 @@
 
   <link rel="icon" type="image/ico" href="/static/nsitf_logo/nsitf.png" />
 
-
-
   {% block extrahead %}
   {% endblock %}
 </head>
-<body>
-  <nav class="navbar navbar-expand-md navbar-dark">
-    <div class="d-flex flex-grow-1">
-      <span class="w-100 d-lg-none d-block">
-        <!-- hidden spacer to center brand on mobile -->
-      </span>
-      <a class="navbar-brand" href="#">
-        <img id="logo" alt="Logo" src="/static/nsitf_logo/nsitf.jpg" width="40" height="40">
-        <span><b>NSITF</b></span>
-      </a>
+<body id="page-container">
+    <!-- NAVBAR START-->
+    <nav class="navbar navbar-expand-md navbar-dark">
+      <div class="d-flex flex-grow-1">
+        <span class="w-100 d-lg-none d-block">
+          <!-- hidden spacer to center brand on mobile -->
+        </span>
+        <a class="navbar-brand" href="#">
+          <img id="logo" alt="Logo" src="/static/nsitf_logo/nsitf.jpg" width="40" height="40">
+          <span><b>NSITF</b></span>
+        </a>
 
-      <div class="w-100 text-right">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+      </div>
+              
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item {% block homeactive %}{% endblock %}" >
+            <a class="nav-link" href="{% url 'home' %}">Home<span class="sr-only">(current)</span></a>
+          </li>
+
+          <li class="nav-item {% block regactive %}{% endblock %}">
+            <a class="nav-link" href="{% url 'partialformone' %}">Employer </a>
+          </li>
+
+          {% if user.is_authenticated %}
+        
+            <li class="nav-item {% block adduseractive %}{% endblock %}">
+              <a class="nav-link" href="{% url 'addnewuser' %}">Add User</a>
+            </li>
+
+            <li class="nav-item {% block mailtemplateactive %}{% endblock %}">
+              <a class="nav-link" href="{% url 'mail_template' %}">Mail Template</a>
+            </li>
+            
+            <li class="nav-item {% block taskqueueactive %}{% endblock %}">
+              <a class="nav-link" href="{% url 'taskqueueview' %}">My Task Queue</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout' %}">Log out</a>
+            </li>
+          {% else %}
+            <li class="nav-item {% block loginactive %}{% endblock %}">
+              <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
+
+            <li class="nav-item {% block signupactive %}{% endblock %}">
+              <a class="nav-link" href="{% url 'signup' %}">Sign Up </a>
+            </li>
+          {% endif %}
+
+            </div>
+          </li>
+        </ul>
+    </nav>
+    <!-- NAVBAR END -->
+
+    <!--CONTENT WRAP-->
+  <div id="content-wrap">  
+    <!-- MESSAGES START -->
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    <!-- MESSAGES END -->
+
+    {% block content %} 
+    {% endblock %}
+  </div>
+  <!-- CONTENT WRAP END -->
+
+  <!-- FOOTER START -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <h1>NSITF</h1>
+          <p>The Nigeria Social Insurance Trust Fund is a proactive and employee dedicated government institution committed to the welfare of employees in the event of work related accidents and injuries. </p>
+          <br>
+
+          <ul class="list-unstyled list-inline social-icons">
+              <li><a href="" onclick="MM_openBrWindow('https://www.facebook.com/Nsitf/','','')" class="facebook"><i class="fa fa-facebook facebook"></i></a>
+              </li>  <li><a href="" onclick="MM_openBrWindow('https://twitter.com/nsitf','','')" class="twitter"><i class="fa fa-twitter twitter"></i></a></li>  
+              <li><a href="" onclick="MM_openBrWindow('https://www.linkedin.com/in/nsitf-nigeria-social-insurance-trust-fund-7925a5122/','','')" class="linkedin"><i class="fa fa-linkedin linkedin"></i></a></li> 
+          </ul>
+        </div>
+
+        <div class="col-md-3">
+          &nbsp;
+        </div>
+
+        <div class="col-md-3">
+          <h4>CONTACT US</h4>
+          <p><i class="fa fa-map-pin fa-fw"></i> Corporate Headquarters, Plot 794, Mohammadu Buhari Way, Central Business Area, P.M.B. 446, Garki, Abuja, Nigeria.</p> <p><i class="fa fa-phone fa-fw"></i> +234 (09) 2911810</p> <p><i class="fa fa-phone fa-fw"></i> +234 (09) 2918900</p> <p><i class="fa fa-envelope fa-fw"></i> corporateaffairs@nsitf.gov.ng</p> 
+        </div>
+
+        <div class="col-md-3">
+            <h4>NEWSLETTER</h4>
+            <p>Subscribe to our newsletter and stay updated with the latest news and information from us.</p>
+            <form name="CFForm_1" id="CFForm_1" action="&#x2f;html&#x2f;index.cfm" method="post" onsubmit="return _CF_checkCFForm_1(this)">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-envelope-o"></i></div>
+                        <input name="NewsletterEmail" type="email" class="form-control"  id="NewsletterEmail"  placeholder="Your Email Address"  />
+                    </div>
+                </div>
+                <div class="form-group pull-right">
+                    <button type="submit" id="Svnewsletter" name="Svnewsletter" class="btn btn-primary">Subscribe</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="row">
+          <hr>
+          <div class="col-md-12 text-center bottom">
+            <p>Copyright &copy; 2020. All rights reserved <br/> Nigeria Social Insurance Trust Fund</p>
+          </div>
+        </div>   
       </div>
     </div>
-            
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="{% url 'home' %}">Home<span class="sr-only">(current)</span></a>
-        </li>
+  </footer>
+  <!-- FOOTER END -->
 
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'submitnewemployer' %}">Employer</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'login' %}">Login</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'signup' %}">Sign Up </a>
-        </li>
-        {% if user.is_authenticated %}
-      
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'addnewuser' %}">Add User</a>
-          </li>
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'taskqueueview' %}">My Task Queue</a>
-          </li>
-        {% endif %}
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  {% block content %} 
-  {% endblock %}
 
   <script src="/static/js/popper.min.js"></script>
   <!-- <script src="/static/js/jquery.min.js"></script> -->

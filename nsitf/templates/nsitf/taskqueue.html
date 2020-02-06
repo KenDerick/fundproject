@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+{% block taskqueueactive %} active {% endblock %}"
 {% block content %}
     <div class="container">
         <ol class="breadcrumb my-4">
@@ -21,9 +22,9 @@
                         <td>{{ task.CAC_reg_date }}</td>     
                         <td>{{ task.name }}</td>
                         <td>{{ task.status }}</td>
-                        <td><a href="#" class="btn btn-warning">View</a></td> 
-                        <td><a href="#" class="btn btn-primary">Discard</a></td>
-                        <td><a href="#" class="btn btn-success">Approve</a></td>
+                        <td><a href="{% url 'taskdetailsview' task.pk %}" class="btn btn-warning">View</a></td> 
+                        <td><a href="{% url 'returnregistration' task.pk %}" class="btn btn-primary">Return</a></td>
+                        <td><a href="{% url 'approve_registration' task.pk %}" class="btn btn-success">Approve</a></td>
                     </tr>
                 {% endfor %}
             </tbody>

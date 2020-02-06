@@ -23,11 +23,9 @@
                         <td>{{ employer_details.employer_name }}</td>
                         <td>{{ employer_details.status }}</td>
                         <td><a href="{% url 'cancelregistration' employer_details.pk %}" class="btn btn-warning">Cancel</a></td> 
-                        <td><a href="{% url 'cancelregistration' employer_details.pk %}" class="btn btn-primary">Edit</a></td>
+                        <td><a href="{% url 'editregistration' employer_details.pk %}" class="btn btn-primary">Edit</a></td>
                         <td><a href="{% url 'sendtotaskqueue' employer_details.pk %}" class="btn btn-success">Submit</a></td>
                      {% endfor %}
-
-                
     </div>
 
             </tbody>

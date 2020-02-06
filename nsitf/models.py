@@ -149,7 +149,6 @@ class Registration_Status(models.Model):
 
 
 class Employers(models.Model):
-    employer_code=models.AutoField(primary_key=True,unique=True)
     employer_name = models.CharField(max_length=150)
     CAC_no = models.IntegerField(blank=True,null=True,unique=False)
     CAC_reg_date = models.DateField(blank=True,null=True)
@@ -180,13 +179,15 @@ class Employers(models.Model):
         chained_model_field="region",
         show_all=False,
         auto_choose=True,
-        sort=True)
+        sort=True,
+        null=True)
     certificate_no = models.IntegerField(blank=True, null=True, unique=False)
     status = models.ForeignKey(Registration_Status, on_delete=models.SET_NULL, null=True, default='1')
     business_type = models.CharField(max_length=100,blank=True, null=True)
     cancelled_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     last_changed_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='changed_by')
     last_changed_on = models.DateTimeField(auto_now_add=True,blank=True, null=True,unique=False)
+    employee_list = models.FileField(blank=True, null=True,unique=False)
     # queue_code = models.ForeignKey(Reg_Task_Queue, models.SET_NULL, null=True, unique=False)
     # ECS_no = models.IntegerField(blank=True, null=True, unique=False)
 
@@ -196,14 +197,18 @@ class Employers(models.Model):
 
 
 class Employees(models.Model):
-    employee_id = models.IntegerField()
     first_name = models.CharField(max_length=50)
-    middle_name = models.CharField(max_length=50)
+    other_names = models.CharField(max_length=50,null=True)
     last_name = models.CharField(max_length=50)
-    # employer = models.ForeignKey(Employers, on_delete=models.CASCADE, related_name='emplyees')
+    email = models.EmailField(blank=True)
+    address = models.CharField(max_length=50)
+    phone = models.IntegerField(unique=False,null=True)
+    profile = models.TextField(null=True)
+    employer_numb=models.ForeignKey(Employers, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
-        return (self.first_name+' '+self.last_name+'--'+self.employee_id)
+        return (self.first_name+' '+self.last_name+'--'+ self.employee_id)
+
 
 class CAC_DB(models.Model):
     cac_no = models.IntegerField()
@@ -225,6 +230,7 @@ class Reg_Task_Route(models.Model):
 
 class Reg_Tasks(models.Model):
     code = models.OneToOneField(Employers, on_delete=models.CASCADE, primary_key=True)
+    # code =  models.AutoField(primary_key=True, unique=True)
     queue_code =  models.ForeignKey(Reg_Task_Queue, models.SET_NULL, blank=True, null=True, unique=False, related_name='tasks_queue')
     name = models.CharField(max_length=200, null=True, blank=True)
     CAC_no = models.IntegerField(blank=True, null=True, unique=False)
@@ -233,3 +239,7 @@ class Reg_Tasks(models.Model):
     sent_on = models.DateTimeField(blank=True, null=True, unique=False)
     branch = models.ForeignKey(Branches, models.SET_NULL, blank=True, null=True, unique=False, related_name='taskbranch')
     status = models.ForeignKey(Registration_Status, on_delete=models.SET_NULL, null=True)
+
+class csv_upload(models.Model):
+    firstname = models.CharField(max_length=100)
+    lastname = models.CharField(max_length=100)
