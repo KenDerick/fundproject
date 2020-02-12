@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load staticfiles%}
+{% load static%}
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -93,7 +93,7 @@
     <!-- NAVBAR END -->
 
     <!--CONTENT WRAP-->
-  <div id="content-wrap">  
+  <div class="content-wrap">  
     <!-- MESSAGES START -->
     {% if messages %}
       <ul class="messages">
@@ -112,50 +112,53 @@
   <!-- FOOTER START -->
   <footer class="footer">
     <div class="container">
-      <div class="row">
-        <div class="col-md-3">
-          <h1>NSITF</h1>
-          <p>The Nigeria Social Insurance Trust Fund is a proactive and employee dedicated government institution committed to the welfare of employees in the event of work related accidents and injuries. </p>
-          <br>
+      <div class="footer-content">
+        <div class="row">
+          <div class="col-md-3">
+            <h1>NSITF</h1>
+            <p>The Nigeria Social Insurance Trust Fund is a proactive and employee dedicated government institution committed to the welfare of employees in the event of work related accidents and injuries. </p>
+            <br>
 
-          <ul class="list-unstyled list-inline social-icons">
-              <li><a href="" onclick="MM_openBrWindow('https://www.facebook.com/Nsitf/','','')" class="facebook"><i class="fa fa-facebook facebook"></i></a>
-              </li>  <li><a href="" onclick="MM_openBrWindow('https://twitter.com/nsitf','','')" class="twitter"><i class="fa fa-twitter twitter"></i></a></li>  
-              <li><a href="" onclick="MM_openBrWindow('https://www.linkedin.com/in/nsitf-nigeria-social-insurance-trust-fund-7925a5122/','','')" class="linkedin"><i class="fa fa-linkedin linkedin"></i></a></li> 
-          </ul>
-        </div>
+            <ul class="list-unstyled list-inline social-icons">
+                <li><a href="" onclick="MM_openBrWindow('https://www.facebook.com/Nsitf/','','')" class="facebook"><i class="fa fa-facebook facebook">f</i></a></li>  
+                <li><a href="" onclick="MM_openBrWindow('https://twitter.com/nsitf','','')" class="twitter"><i class="fa fa-twitter twitter"></i>t</a></li>  
+                <li><a href="" onclick="MM_openBrWindow('https://www.linkedin.com/in/nsitf-nigeria-social-insurance-trust-fund-7925a5122/','','')" class="linkedin"><i class="fa fa-linkedin linkedin">i</i></a></li> 
+            </ul>
+          </div>
 
-        <div class="col-md-3">
-          &nbsp;
-        </div>
+          <div class="col-md-3">
+            &nbsp;
+          </div>
 
-        <div class="col-md-3">
-          <h4>CONTACT US</h4>
-          <p><i class="fa fa-map-pin fa-fw"></i> Corporate Headquarters, Plot 794, Mohammadu Buhari Way, Central Business Area, P.M.B. 446, Garki, Abuja, Nigeria.</p> <p><i class="fa fa-phone fa-fw"></i> +234 (09) 2911810</p> <p><i class="fa fa-phone fa-fw"></i> +234 (09) 2918900</p> <p><i class="fa fa-envelope fa-fw"></i> corporateaffairs@nsitf.gov.ng</p> 
-        </div>
+          <div class="col-md-3">
+            <h4>CONTACT US</h4>
+            <p><i class="fa fa-map-pin fa-fw"></i> Corporate Headquarters, Plot 794, Mohammadu Buhari Way, Central Business Area, P.M.B. 446, Garki, Abuja, Nigeria.</p> <p><i class="fa fa-phone fa-fw"></i> +234 (09) 2911810</p> <p><i class="fa fa-phone fa-fw"></i> +234 (09) 2918900</p> <p><i class="fa fa-envelope fa-fw"></i> corporateaffairs@nsitf.gov.ng</p> 
+          </div>
 
-        <div class="col-md-3">
-            <h4>NEWSLETTER</h4>
-            <p>Subscribe to our newsletter and stay updated with the latest news and information from us.</p>
-            <form name="CFForm_1" id="CFForm_1" action="&#x2f;html&#x2f;index.cfm" method="post" onsubmit="return _CF_checkCFForm_1(this)">
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="input-group-addon"><i class="fa fa-envelope-o"></i></div>
-                        <input name="NewsletterEmail" type="email" class="form-control"  id="NewsletterEmail"  placeholder="Your Email Address"  />
-                    </div>
-                </div>
-                <div class="form-group pull-right">
-                    <button type="submit" id="Svnewsletter" name="Svnewsletter" class="btn btn-primary">Subscribe</button>
-                </div>
-            </form>
-        </div>
+          <div class="col-md-3">
+              <h4>NEWSLETTER</h4>
+              <p>Subscribe to our newsletter and stay updated with the latest news and information from us.</p>
+              <form name="CFForm_1" id="CFForm_1" action="&#x2f;html&#x2f;index.cfm" method="post" onsubmit="return _CF_checkCFForm_1(this)">
+                  <div class="form-group">
+                      <div class="input-group">
+                          <div class="input-group-addon"><i class="fa fa-envelope-o"></i></div>
+                          <input name="NewsletterEmail" type="email" class="form-control"  id="NewsletterEmail"  placeholder="Your Email Address"  />
+                      </div>
+                  </div>
+                  <div class="form-group pull-right">
+                      <button type="submit" id="Svnewsletter" name="Svnewsletter" class="btn btn-primary">Subscribe</button>
+                  </div>
+              </form>
+          </div>
+      </div>
 
+      <div class="footer-bottom">
         <div class="row">
           <hr>
           <div class="col-md-12 text-center bottom">
-            <p>Copyright &copy; 2020. All rights reserved <br/> Nigeria Social Insurance Trust Fund</p>
-          </div>
-        </div>   
+            <p><b> &copy; 2020. All rights reserved | Nigeria Social Insurance Trust Fund</b></p>
+          </div>  
+        </div> 
       </div>
     </div>
   </footer>
