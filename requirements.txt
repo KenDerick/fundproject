@@ -1,5 +1,5 @@
 certifi==2019.9.11
-Django==2.0.13
+Django==2.2.10
 django-smart-selects==1.5.4
 django-use-email-as-username==1.0.2
 Faker==2.0.3
